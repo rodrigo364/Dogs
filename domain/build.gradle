@@ -9,5 +9,4 @@ java {
 }
 
 dependencies {
-    implementation "org.koin:koin-android:${koin_version}"
 }
