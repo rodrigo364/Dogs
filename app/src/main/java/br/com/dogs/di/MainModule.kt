@@ -2,11 +2,21 @@ package br.com.dogs.di
 
 import br.com.dogs.BuildConfig.*
 import br.com.dogs.data.service.DogsService
+import br.com.dogs.data.service.model.*
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.PolymorphicSerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import kotlinx.serialization.modules.subclass
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -56,10 +67,14 @@ object MainModule {
     fun providesApiService(
         okHttpClient: OkHttpClient
         ) : DogsService {
+
+        val contentType = "application/json".toMediaType()
+        val converterFactory = Json.asConverterFactory(contentType)
+
         return Retrofit.Builder().baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(
-                GsonConverterFactory.create())
+               converterFactory)
             .build().create(DogsService::class.java)
     }
 }

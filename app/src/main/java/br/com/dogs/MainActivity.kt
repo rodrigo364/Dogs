@@ -2,6 +2,7 @@ package br.com.dogs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import br.com.dogs.adapter.DogsBreedsAdapter
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
     override fun onError(message: String) {
         binding.progressBar.visibility = View.GONE
+        Log.d("ERRO",message)
         Toast.makeText(this,message,Toast.LENGTH_LONG).show()
         binding.tvError.text = message
     }

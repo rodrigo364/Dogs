@@ -2,6 +2,7 @@ package br.com.dogs.model
 
 import br.com.dogs.contracts.MainActivityContract
 import br.com.dogs.data.service.DogsService
+import br.com.dogs.data.service.model.DogsBreedsDTO
 
 class MainModel(private val dogsService: DogsService) : MainActivityContract.Model {
 
@@ -12,7 +13,9 @@ class MainModel(private val dogsService: DogsService) : MainActivityContract.Mod
 
             if(response.isSuccessful){
                 response.body()?.let {
-                    onFinishListener.onSuccess(it)
+                    val d = DogsBreedsDTO()
+                    d.addAll(it)
+                    onFinishListener.onSuccess(d)
                 }
             } else {
                 onFinishListener.onError(response.errorBody().toString())
