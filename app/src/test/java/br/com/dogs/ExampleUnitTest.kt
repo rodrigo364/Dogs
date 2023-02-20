@@ -1,5 +1,7 @@
 package br.com.dogs
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.modules.SerializersModule
 import org.junit.Test
 
 import org.junit.Assert.*

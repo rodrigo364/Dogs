@@ -15,6 +15,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Dogs"
 include ':app'
-include ':domain'
-include ':data'
-include ':presentation'
