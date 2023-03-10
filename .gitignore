@@ -44,7 +44,7 @@ proguard/
 .idea/caches/build_file_checksums.ser
 .idea/modules.xml
 
-/.idea
+/.idea/*
 
 
 # Keystore files
