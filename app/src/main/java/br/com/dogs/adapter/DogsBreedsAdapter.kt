@@ -1,12 +1,13 @@
 package br.com.dogs.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dogs.R
 import br.com.dogs.data.service.model.DogsBreedsDTO
+import br.com.dogs.data.service.model.HeightWeightDTO
 import br.com.dogs.data.service.model.ImgSrcSet
 import br.com.dogs.data.service.model.Meta
 import br.com.dogs.databinding.ViewHolderBreedsBinding
@@ -41,27 +42,57 @@ class DogsBreedsAdapter : RecyclerView.Adapter<DogsBreedsAdapter.DogsBreedsViewH
         val binding = holder.viewHodlerBreeds
         val dogs = this.dogsBreedsList[position]
         binding.tvBreed.text = dogs.breed
-        binding.tvOrigin.text = dogs.origin
+        binding.lbOrigin.text = dogs.origin
         var img02x : String?  = null
-        try{
-            val castMeta = dogs.meta as Meta
+        var otherName : String? = ""
+        try {
+             val castMeta = dogs.meta as Meta
              val castImgSrcSet  = castMeta.imgSrcSet as ImgSrcSet
-            img02x = castImgSrcSet.O_2_x
+             img02x = castImgSrcSet.O_2_x
+             otherName = castMeta.otherNames
+            binding.lbCoat.text = castMeta.coat
 
-        }catch (e: Exception) {
+            //Height
+            if (dogs.meta.height is HeightWeightDTO) {
+                binding.tvheight.text =  (dogs.meta.height as HeightWeightDTO).dogs
+
+            } else {
+               binding.tvheight.text =  dogs.meta.height as String
+            }
+
+            //Weight
+            if (dogs.meta.weight is HeightWeightDTO) {
+                binding.tvheight.text =  (dogs.meta.weight as HeightWeightDTO).dogs
+
+            } else {
+                binding.tvWeight.text =  dogs.meta.height as String
+            }
+
+
+        } catch (e: Exception) {
             println("error")
         }
 
+        binding.tvOtherNames.text = otherName
 
 
         Picasso.get()
             .load(img02x)
             .memoryPolicy(MemoryPolicy.NO_CACHE)
+            .fit()
+            .centerInside()
             .placeholder(R.mipmap.ic_dog_placeholder)
             .error(R.mipmap.ic_error_dog)
-            .into(binding.imgDogs)
+            .into(binding.imgDogs, object : Callback {
+                override fun onSuccess() {
+                    binding.progressLoadingImage.visibility = View.GONE
+                }
 
+                override fun onError(e: Exception?) {
+                    binding.progressLoadingImage.visibility = View.GONE
+                }
 
-
+            })
     }
+
 }

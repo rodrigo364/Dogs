@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Dogs</string>
+    <string name="txt_breed">Breed</string>
+    <string name="txt_origin">Origin</string>
+    <string name="txt_coat">Coat</string>
+    <string name="txt_weight">Weight</string>
+    <string name="txt_height">Height</string>
+    <string name="txt_default">--</string>
 </resources>

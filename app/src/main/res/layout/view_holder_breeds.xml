@@ -1,40 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-<data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:elevation="@dimen/cardview_compat_inset_shadow">
 
-</data>
+    <data>
+
+    </data>
 <androidx.cardview.widget.CardView
-    app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
-    android:layout_margin="12dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="8dp"
+    app:cardElevation="3dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="vertical">
+       >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="American Bully" />
+
         <ImageView
             android:id="@+id/imgDogs"
             android:layout_width="match_parent"
-            android:layout_height="150dp"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="Affenpinscher"
-        android:id="@+id/tvBreed" />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="Germany"
-        android:id="@+id/tvOrigin" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbOtherNames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/txt_breed"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imgDogs"
+            app:layout_constraintTop_toBottomOf="@+id/imgDogs"
+            tools:text="@string/txt_breed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOtherNames"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@string/txt_default"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/lbWeight"
+            app:layout_constraintEnd_toStartOf="@+id/lbOrigin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbOtherNames"
+            tools:text="Affenpinscher Affenpinsche Affenpinsche" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbOrigin"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@string/txt_default"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/lbheight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvOrigin"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrigin"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Morocco fsdfds sdafdsfdsfsdfsdfsdfsdsdffsdfdsfsdfsdfsfsdfsdfsdfsdfsdffdsgfgdfhgfhgfhfghfgffsddsfsfsdfs" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOrigin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/txt_origin"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lbOtherNames"
+            app:layout_constraintTop_toBottomOf="@+id/imgDogs" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_coat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbCoat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_default"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvCoat"
+            app:layout_constraintTop_toBottomOf="@+id/tvCoat"
+            tools:text="Thick, medium-length" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_weight"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/lbheight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOtherNames" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_default"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvheight"
+            app:layout_constraintStart_toStartOf="@+id/lbWeight"
+            app:layout_constraintTop_toBottomOf="@+id/lbWeight"
+            tools:text="20–60 kg (44–132 lb)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbheight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_height"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lbWeight"
+            app:layout_constraintTop_toTopOf="@+id/lbWeight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvheight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_default"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/lbheight"
+            app:layout_constraintTop_toBottomOf="@+id/lbheight"
+            tools:text="33–50 cm (13–20 in)" />
+
+        <ProgressBar
+            android:id="@+id/progressLoadingImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13999999" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 </layout>
